@@ -13,9 +13,14 @@ find_package(std_srvs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
-# these files are auto-generated using the copy script
-include(msg_list.txt)
-include(srv_list.txt)
+# automatically discover all message and service files from subdirectories only
+file(GLOB_RECURSE msg_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} 
+  "msg/*.msg"
+)
+
+file(GLOB_RECURSE srv_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+  "srv/*.srv"
+)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
     ${msg_files}
