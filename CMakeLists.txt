@@ -14,11 +14,11 @@ find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
 # automatically discover all message and service files from subdirectories only
-file(GLOB_RECURSE msg_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} 
+file(GLOB_RECURSE msg_files FOLLOW_SYMLINKS FALSE RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} 
   "msg/*.msg"
 )
 
-file(GLOB_RECURSE srv_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+file(GLOB_RECURSE srv_files FOLLOW_SYMLINKS FALSE RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
   "srv/*.srv"
 )
 
