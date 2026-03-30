@@ -69,7 +69,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
     # msg/RangeWithCovarianceIdentified.msg
     msg/Reference.msg
     # msg/ReferenceArray.msg
-    # msg/ReferenceStamped.msg
+    msg/ReferenceStamped.msg
     # msg/ReferenceWithVelocity.msg
     # msg/RtkFixType.msg
     # msg/RtkGps.msg

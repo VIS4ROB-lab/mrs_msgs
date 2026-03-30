@@ -73,7 +73,7 @@ add_message_files(DIRECTORY msg FILES
   # RangeWithCovarianceIdentified.msg
   Reference.msg
   # ReferenceArray.msg
-  # ReferenceStamped.msg
+  ReferenceStamped.msg
   # ReferenceWithVelocity.msg
   # RtkFixType.msg
   # RtkGps.msg
