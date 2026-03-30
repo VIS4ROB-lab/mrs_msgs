@@ -1,72 +1,28 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.0.2)
 project(mrs_msgs)
 
-set(CMAKE_CXX_STANDARD 17)
+## Compile as C++11, supported in ROS Kinetic and newer
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CATKIN_DEPENDENCIES
-  cmake_modules
-  geometry_msgs
+find_package(catkin REQUIRED COMPONENTS
   message_generation
   message_runtime
   roscpp
-  sensor_msgs
+  rospy
   std_msgs
-  )
+  sensor_msgs
+  geometry_msgs
+)
 
-find_package(catkin REQUIRED COMPONENTS
-  ${CATKIN_DEPENDENCIES}
-  )
-
-# messages for ROBOT_DIAGNOSTICS
-add_message_files(DIRECTORY msg/robot_diagnostics FILES
-  UavDiagnostics.msg
-  )
-
-# messages for MPC_TRACKER
-add_message_files(DIRECTORY msg/mpc_tracker FILES
-
-  FuturePoint.msg
-  FutureTrajectory.msg
-  MpcPredictionFullState.msg
-  MpcTrackerDiagnostics.msg
-  )
-
-# messages for GIMBAL
-add_message_files(DIRECTORY msg/gimbal FILES
-
-  GimbalState.msg
-  )
-
-# messages for GNSS
-add_message_files(DIRECTORY msg/gnss FILES
-
-  RtkFixType.msg
-  RtkGps.msg
-  GpsData.msg
-  GpsInfo.msg
-  )
-
-# messages for LANDOFF_TRACKER
-add_message_files(DIRECTORY msg/landoff_tracker FILES
-
-  LandoffDiagnostics.msg
-  )
-
-# messages for GazeboSimulation
-add_message_files(DIRECTORY msg/gazebo_simulation FILES
-
-  GazeboSpawnerDiagnostics.msg
-  )
-
-# messages for the UAV_MANAGERS
-add_message_files(DIRECTORY msg/uav_managers FILES
-
+add_message_files(DIRECTORY msg FILES
+  BoolStamped.msg
   ConstraintManagerDiagnostics.msg
   ControlError.msg
   ControllerDiagnostics.msg
   ControllerStatus.msg
   ControlManagerDiagnostics.msg
+  CustomTopic.msg
   DynamicsConstraints.msg
   EstimationDiagnostics.msg
   EstimatorCorrection.msg
@@ -74,91 +30,19 @@ add_message_files(DIRECTORY msg/uav_managers FILES
   EstimatorInput.msg
   EstimatorOutput.msg
   EulerAngles.msg
-  GainManagerDiagnostics.msg
-  PathReference.msg
-  ReferenceArray.msg
-  Reference.msg
-  ReferenceStamped.msg
-  TrackerCommand.msg
-  TrackerStatus.msg
-  TrajectoryReference.msg
-  UavManagerDiagnostics.msg
-  UavState.msg
-  VelocityReference.msg
-  VelocityReferenceStamped.msg
-  )
-
-# messages for the UAV_STATUS
-add_message_files(DIRECTORY msg/uav_status FILES
-
-  CustomTopic.msg
-  NodeCpuLoad.msg
-  UavStatus.msg
-  UavStatusShort.msg
-  )
-
-# messages for the SE3_CONTROLLER
-add_message_files(DIRECTORY msg/se3_controller FILES
-
-  Se3Gains.msg
-  )
-
-# messages for the TRAJECTORY_GENERATION
-add_message_files(DIRECTORY msg/trajectory_generation FILES
-
-  Path.msg
-  PathWithVelocity.msg
-  ReferenceWithVelocity.msg
-  )
-
-# messages for the PROFILER
-add_message_files(DIRECTORY msg/profiler FILES
-
-  ProfilerUpdate.msg
-  )
-
-# messages for the MRS_BUMPER
-add_message_files(DIRECTORY msg/bumper FILES
-
-  Histogram.msg
-  ObstacleSectors.msg
-  )
-
-# messages for SPEED_TRACKER
-add_message_files(DIRECTORY msg/speed_tracker FILES
-
-  SpeedTrackerCommand.msg
-  )
-
-# general messages
-add_message_files(DIRECTORY msg/general FILES
-
   Float64ArrayStamped.msg
   Float64.msg
   Float64MultiArrayStamped.msg
   Float64Stamped.msg
-  ImageLabeledArray.msg
-  ImageLabeled.msg
-  PoseWithCovarianceArrayStamped.msg
-  PoseWithCovarianceIdentified.msg
-  RangeWithCovarianceArrayStamped.msg
-  RangeWithCovarianceIdentified.msg
-  Sphere.msg
-  StringStamped.msg
-  TrackArrayStamped.msg
-  Track.msg
-  TrackStamped.msg
-  )
-
-# messages for stamped_msgs
-add_message_files(DIRECTORY msg/stamped_msgs FILES
-
-  UInt16Stamped.msg
-  BoolStamped.msg
-  )
-
-add_message_files(DIRECTORY msg/hw_api FILES
-
+  FuturePoint.msg
+  FutureTrajectory.msg
+  GainManagerDiagnostics.msg
+  GazeboSpawnerDiagnostics.msg
+  GimbalState.msg
+  GpsData.msg
+  GpsInfo.msg
+  GripperDiagnostics.msg
+  Histogram.msg
   HwApiAccelerationHdgCmd.msg
   HwApiAccelerationHdgRateCmd.msg
   HwApiActuatorCmd.msg
@@ -172,16 +56,56 @@ add_message_files(DIRECTORY msg/hw_api FILES
   HwApiStatus.msg
   HwApiVelocityHdgCmd.msg
   HwApiVelocityHdgRateCmd.msg
-  )
+  ImageLabeled.msg
+  ImageLabeledArray.msg
+  LandoffDiagnostics.msg
+  MpcPredictionFullState.msg
+  MpcTrackerDiagnostics.msg
+  NodeCpuLoad.msg
+  ObstacleSectors.msg
+  Path.msg
+  PathReference.msg
+  PathWithVelocity.msg
+  PoseWithCovarianceArrayStamped.msg
+  PoseWithCovarianceIdentified.msg
+  ProfilerUpdate.msg
+  RangeWithCovarianceArrayStamped.msg
+  RangeWithCovarianceIdentified.msg
+  Reference.msg
+  ReferenceArray.msg
+  ReferenceStamped.msg
+  ReferenceWithVelocity.msg
+  RtkFixType.msg
+  RtkGps.msg
+  Se3Gains.msg
+  SpeedTrackerCommand.msg
+  Sphere.msg
+  StringStamped.msg
+  Track.msg
+  TrackArrayStamped.msg
+  TrackStamped.msg
+  TrackerCommand.msg
+  TrackerStatus.msg
+  TrajectoryReference.msg
+  UavDiagnostics.msg
+  UavManagerDiagnostics.msg
+  UavState.msg
+  UavStatus.msg
+  UavStatusShort.msg
+  UInt16Stamped.msg
+  VelocityReference.msg
+  VelocityReferenceStamped.msg
+)
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(DEPENDENCIES
-
-  std_msgs
-  geometry_msgs
-  sensor_msgs
-  )
+generate_messages(
+  DEPENDENCIES
+    std_msgs
+    geometry_msgs
+    sensor_msgs
+)
 
 catkin_package(
-  CATKIN_DEPENDS ${CATKIN_DEPENDENCIES}
-  )
+  CATKIN_DEPENDS
+    message_runtime
+)
