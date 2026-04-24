@@ -1,0 +1,6 @@
+std_msgs/Header header
+geometry_msgs/Pose goal
+bool use_relative_goal
+---
+bool success
+string message
